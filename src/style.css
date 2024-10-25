@@ -8,7 +8,7 @@
 body {
   display: grid;
   grid-template-columns: 1fr 6fr;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 4rem 1fr;
   height: 100vh;
 }
 
@@ -57,8 +57,28 @@ body {
   margin-right: 10px;
 }
 
+/* sidebar and sidebar contents */
 #navbar {
-  background-color: yellow;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+#logo {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#nav-btns {
+  justify-self: end;
+}
+
+#nav-btns button {
+  font-size: 1rem;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(240, 243, 255);
 }
 
 #content {

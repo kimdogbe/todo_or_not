@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 50px 1fr;
+  height: 100vh;
+}
+
+#sidebar {
+  background-color: red;
+  grid-row: 1 / -1;
+}
+
+#navbar {
+  background-color: yellow;
+}
+
+#content {
+  background-color: green;
+  grid-column: 2 / 3;
+}

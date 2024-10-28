@@ -1,10 +1,12 @@
 import "./style.css"
-import { createList } from "./logic.js"
+import { createList } from "./logic.js";
+import { updateCards } from "./domUpdates.js";
 
 console.log("We out here");
 
 let allLists = [];
 const dialogElement = document.querySelector("dialog");
+const formElement = document.querySelector("form");
 const listName = document.querySelector("#list-name");
 const listDesc = document.querySelector("#list-desc");
 
@@ -16,9 +18,12 @@ addEventListener("click", (event) => {
     event.preventDefault();
     dialogElement.close();
   }
-  else if(event.target.id == "create-list") {
+});
+
+formElement.addEventListener("submit", (event) => {
     event.preventDefault();
     allLists.push(createList(listName.value, listDesc.value));
+    console.log(allLists);
+    updateCards(allLists);
     dialogElement.close();
-  }
 });

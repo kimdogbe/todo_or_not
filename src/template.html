@@ -59,7 +59,7 @@
   <div id="content">
     <div class="list">
       <div class="list-name">List Name</div>
-      <div class="list-disc">Short discription of what the list is for</div>
+      <div class="list-desc">Short description of what the list is for</div>
       <div class="list-items incomplete">
         <ul>
           <li>item1</li>
@@ -86,7 +86,7 @@
   </div>
 
   <dialog>
-    <form action="">
+    <form id="new-list-form" action="">
       <div class="form-group">
         <label for="list-name">List Name</label>
         <input id="list-name" type="text" maxlength="20">
@@ -97,7 +97,7 @@
       </div>
 
       <button id="cancel-list">Cancel</button>
-      <button id="create-list">Create</button>
+      <button type="submit" id="create-list">Create List</button>
     </form>
   </dialog>
 </body>

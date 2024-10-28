@@ -10,6 +10,7 @@ body {
   grid-template-columns: 1fr 6fr;
   grid-template-rows: 4rem 1fr;
   height: 100vh;
+  background-image: url(../images/paper.jpg);
 }
 
 #sidebar,
@@ -23,8 +24,8 @@ body {
   display: grid;
   align-content: start;
   grid-row: 1 / -1;
-
   gap: 10px;
+  overflow-y: scroll;
 }
 
 #user {
@@ -57,7 +58,7 @@ body {
   margin-right: 10px;
 }
 
-/* sidebar and sidebar contents */
+/* navbar and navbar contents */
 #navbar {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -81,7 +82,55 @@ body {
   background-color: rgb(240, 243, 255);
 }
 
+/* main list contents */
 #content {
-  background-color: green;
+  display: grid;
   grid-column: 2 / 3;
+  overflow-x: scroll;
+}
+
+#attribute {
+  position: fixed;
+  bottom: 0;
+  right: 40%;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.list {
+  display: grid;
+  padding: 10px;
+  background-color: rgb(234, 234, 234);
+  border-radius: 10px;
+  width: 300px;
+  height: fit-content;
+  border-left: 5px solid rgb(255, 191, 0);
+}
+
+.list-name {
+  font-size: 1.5rem;
+}
+
+li {
+  list-style: none;
+}
+
+.complete li {
+  text-decoration: line-through;
+}
+
+.complete {
+  margin: 10px 0px;
+}
+
+.incomplete {
+  margin: 10px 0px;
+}
+
+.due-date {
+  text-align: right;
 }

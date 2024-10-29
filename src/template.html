@@ -57,10 +57,11 @@
   </div>
 
   <div id="content">
-    <div class="list">
+    <div class="list list-365">
       <div class="list-name">List Name</div>
       <div class="list-desc">Short description of what the list is for</div>
       <div class="list-items incomplete">
+        <button class="add-item-btn list-365">Add item</button>
         <ul>
           <li>item1</li>
           <li>item2</li>
@@ -89,15 +90,16 @@
     <form id="new-list-form" action="">
       <div class="form-group">
         <label for="list-name">List Name</label>
-        <input id="list-name" type="text" maxlength="20">
+        <input id="list-name" type="text" maxlength="20" required>
       </div>
-      <div class="form-group"></div>
-        <label for="list-desc">List Name</label>
+      <div class="form-group">
+        <label for="list-desc">List Description</label>
         <input id="list-desc" type="text" maxlength="50">
       </div>
-
-      <button id="cancel-list">Cancel</button>
-      <button type="submit" id="create-list">Create List</button>
+      <div class="form-group">
+        <button id="cancel-list">Cancel</button>
+        <button type="submit" id="create-list">Create List</button>
+      </div>
     </form>
   </dialog>
 </body>

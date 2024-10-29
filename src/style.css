@@ -13,6 +13,17 @@ body {
   background-image: url(../images/paper.jpg);
 }
 
+button {
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+input[type="text"] {
+  font-size: 1rem;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
 #sidebar,
 #navbar,
 #content {
@@ -133,4 +144,26 @@ li {
 
 .due-date {
   text-align: right;
+}
+
+.add-item-btn {
+  background-color: green;
+  padding: 5px 10px;
+  border: none;
+}
+
+dialog {
+  align-self: center;
+  justify-self: center;
+  width: 30%;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+form {
+  display: grid;
+}
+
+.form-group {
+  display: grid;
 }

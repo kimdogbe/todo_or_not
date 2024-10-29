@@ -86,7 +86,7 @@
     </div>
   </div>
 
-  <dialog>
+  <dialog id="new-list-dialog">
     <form id="new-list-form" action="">
       <div class="form-group">
         <label for="list-name">List Name</label>
@@ -99,6 +99,35 @@
       <div class="form-group">
         <button id="cancel-list">Cancel</button>
         <button type="submit" id="create-list">Create List</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="add-item-dialog">
+    <form id="add-item-form" action="">
+      <div class="form-group">
+        <label for="item-title">Todo Title</label>
+        <input id="item-title" type="text" maxlength="20" required>
+      </div>
+      <div class="form-group">
+        <label for="item-desc">Todo Description</label>
+        <input id="item-desc" type="text" maxlength="50">
+      </div>
+      <div class="form-group">
+        <label for="item-priority">Priority</label>
+        <select name="priority" id="item-priority">
+          <option value="low">low</option>
+          <option value="medium">medium</option>
+          <option value="high">high</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="item-duedate">Due Date</label>
+        <input id="item-duedate" type="date">
+      </div>
+      <div class="form-group">
+        <button id="cancel-item">Cancel</button>
+        <button type="submit" id="create-item">Create Item</button>
       </div>
     </form>
   </dialog>

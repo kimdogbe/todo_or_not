@@ -166,4 +166,5 @@ form {
 
 .form-group {
   display: grid;
+  margin-bottom: 5px;
 }

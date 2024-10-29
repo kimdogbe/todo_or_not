@@ -13,6 +13,12 @@ function updateCards(lists) {
 // TODO: get list the parent add-item-btn belongs to
 
 // TODO: create function to update list items after new item added to list
+// function updateCardList(list, card) {
+//   const incompleteItems = list.getIncompleteItems();
+//   const completeItems = list.getCompletedItems();
+
+//   const 
+// }
 
 function createCard(list, index) {
   const card = document.createElement("div");
@@ -32,7 +38,7 @@ function createCard(list, index) {
   addItemBtn.innerHTML = "Add item";
 
   incompleteItems.append(addItemBtn);
-  incompleteItems.append(document.createElement("ul"));
+  incompleteItems.append(createIncompleteItemList(list));
 
   const completeItems = document.createElement("div");
   completeItems.className = "list-items complete";
@@ -43,4 +49,32 @@ function createCard(list, index) {
   // dueDate.innerHTML = "No date set";
   card.append(listName, listDesc, incompleteItems, completeItems, dueDate);
   return card;
+}
+
+function createIncompleteItemList(list) {
+  const items = list.getIncompleteItems();
+  const ulElement = document.createElement("ul");
+
+  for (const item of items){
+    const liElement = document.createElement("li");
+    liElement.innerHTML = item.title;
+
+    ulElement.append(liElement);
+  }
+
+  return ulElement;
+}
+
+function createCompletedItemList(list) {
+  const items = list.getCompletedItems();
+  const ulElement = document.createElement("ul");
+
+  for (const item of items){
+    const liElement = document.createElement("li");
+    liElement.innerHTML = item.title;
+
+    ulElement.append(liElement);
+  }
+
+  return ulElement;
 }

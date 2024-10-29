@@ -2,8 +2,6 @@ import "./style.css"
 import { createList } from "./logic.js";
 import { updateCards } from "./domUpdates.js";
 
-console.log("We out here");
-
 let allLists = [];
 const newListDialog = document.querySelector("#new-list-dialog");
 const addItemDialog = document.querySelector("#add-item-dialog");
@@ -28,7 +26,7 @@ addEventListener("click", (event) => {
     // TODO: add item to list
     addItemDialog.showModal();
     const listIndex = event.target.classList[1].split("-")[1];
-    const targetList = allLists[listIndex];
+    // const targetList = allLists[listIndex];
 
     addItemForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -36,12 +34,13 @@ addEventListener("click", (event) => {
       const itemDesc = document.querySelector("#item-desc");
       const itemPriority = document.querySelector("#item-priority");
       const itemDueDate = document.querySelector("#item-duedate");
-      targetList.createNewItem(itemTitle.value, itemDesc.value, itemDueDate.value, itemPriority.value);
+      allLists[listIndex].createNewItem(itemTitle.value, itemDesc.value, itemDueDate.value, itemPriority.value);
       console.log(allLists);
       updateCards(allLists);
-      console.log(targetList.getIncompleteItems());
+      console.log(allLists[listIndex].getIncompleteItems());
+      addItemForm.reset();
       addItemDialog.close();
-    });
+    }, { once: true });
 
     console.log(listIndex);
   }
@@ -52,6 +51,7 @@ newListForm.addEventListener("submit", (event) => {
     allLists.push(createList(listName.value, listDesc.value));
     console.log(allLists);
     updateCards(allLists);
+    newListForm.reset();
     newListDialog.close();
 });
 

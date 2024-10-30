@@ -38,6 +38,7 @@ addEventListener("click", (event) => {
     console.log(targetList.getIncompleteItems());
     console.log(targetList.getCompletedItems());
     updateCards(allLists);
+    storeListsLocally();
   }
   else if (event.target.classList[0] == "add-item-btn") {
     // TODO: add item to list
@@ -54,6 +55,7 @@ addEventListener("click", (event) => {
       targetList.createNewItem(itemTitle.value, itemDesc.value, itemDueDate.value, itemPriority.value);
       console.log(allLists);
       updateCards(allLists);
+      storeListsLocally();
       console.log(targetList.getIncompleteItems());
       addItemForm.reset();
       addItemDialog.close();
@@ -68,9 +70,27 @@ newListForm.addEventListener("submit", (event) => {
     allLists.push(createList(listName.value, listDesc.value));
     console.log(allLists);
     updateCards(allLists);
+    storeListsLocally();
     newListForm.reset();
     newListDialog.close();
 });
 
+function storeListsLocally(){
+  let listObjects = [];
+
+  for (let list of allLists){
+    const listObj = {
+      name: list.name,
+      description: list.description,
+      incompleteItems: list.getIncompleteItems(),
+      completedItems: list.getCompletedItems(),
+    }
+
+    listObjects.push(listObj);
 
 
+  }
+  
+  localStorage.setItem("listData", JSON.stringify(listObjects));
+
+}

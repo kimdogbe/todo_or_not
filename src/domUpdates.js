@@ -50,6 +50,7 @@ function createIncompleteItemList(list, listIndex) {
   const divElement = document.createElement("div");
 
   for (const [index, item] of items.entries()){
+    const itemDiv = document.createElement("div");
     const checkboxElement = document.createElement("input");
     const labelElement = document.createElement("label");
     const breakElement = document.createElement("br");
@@ -58,7 +59,8 @@ function createIncompleteItemList(list, listIndex) {
     labelElement.htmlFor = `list-${listIndex}-item-${index}`;
     labelElement.innerHTML = item.title;
 
-    divElement.append(checkboxElement, labelElement, breakElement);
+    itemDiv.append(checkboxElement, labelElement, breakElement);
+    divElement.append(itemDiv);
   }
 
   return divElement;
@@ -69,6 +71,7 @@ function createCompletedItemList(list, listIndex) {
   const divElement = document.createElement("div");
 
   for (const [index, item] of items.entries()){
+    const itemDiv = document.createElement("div");
     const checkboxElement = document.createElement("input");
     const labelElement = document.createElement("label");
     const breakElement = document.createElement("br");
@@ -78,7 +81,8 @@ function createCompletedItemList(list, listIndex) {
     labelElement.htmlFor = `list-${listIndex}-item-${index}`;
     labelElement.innerHTML = item.title;
 
-    divElement.append(checkboxElement, labelElement, breakElement);
+    itemDiv.append(checkboxElement, labelElement, breakElement);
+    divElement.append(itemDiv);
   }
 
   return divElement;

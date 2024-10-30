@@ -25,19 +25,29 @@ function createList (name, description) {
     incompleteItems.push(item);
   }
 
-  const removeItem = function (index) {
-    incompleteItems.splice(index, 1);
-    console.log(incompleteItems);
+  const removeItem = function (index, itemComplete) {
+    if (itemComplete) {
+      completedItems.splice(index, 1);
+    }
+    else {
+      incompleteItems.splice(index, 1);
+    }
   }
 
   const markComplete = function (index) {
     completedItems.push(incompleteItems[index]);
-    removeItem(index);
-    console.log(completedItems)
+    removeItem(index, false);
+    console.log(completedItems);
+  }
+
+  const markIncomplete = function (index) {
+    incompleteItems.push(completedItems[index]);
+    removeItem(index, true);
+    console.log(completedItems);
   }
 
   const getIncompleteItems = () => incompleteItems;
   const getCompletedItems = () => completedItems;
 
-  return { name, description, createNewItem, removeItem, markComplete, getCompletedItems, getIncompleteItems }
+  return { name, description, createNewItem, removeItem, markComplete, markIncomplete, getCompletedItems, getIncompleteItems }
 }

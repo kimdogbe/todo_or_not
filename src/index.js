@@ -26,9 +26,17 @@ addEventListener("click", (event) => {
     const listIndex = event.target.id.split("-")[1];
     const itemIndex = event.target.id.split("-")[3];
     console.log(`listnum = ${listIndex}, itemNum = ${itemIndex}`);
-
     const targetList = allLists[listIndex];
-    targetList.markComplete(itemIndex);
+
+    if (event.target.checked){
+      targetList.markComplete(itemIndex);
+    }
+    else {
+      targetList.markIncomplete(itemIndex);
+    }
+    
+    console.log(targetList.getIncompleteItems());
+    console.log(targetList.getCompletedItems());
     updateCards(allLists);
   }
   else if (event.target.classList[0] == "add-item-btn") {

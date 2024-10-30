@@ -146,6 +146,10 @@ li {
   text-align: right;
 }
 
+input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+}
+
 .add-item-btn {
   background-color: green;
   padding: 5px 10px;

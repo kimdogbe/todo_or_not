@@ -27,10 +27,13 @@ function createList (name, description) {
 
   const removeItem = function (index) {
     incompleteItems.splice(index, 1);
+    console.log(incompleteItems);
   }
 
   const markComplete = function (index) {
-    completedItems.push(incompleteItems[index])
+    completedItems.push(incompleteItems[index]);
+    removeItem(index);
+    console.log(completedItems)
   }
 
   const getIncompleteItems = () => incompleteItems;

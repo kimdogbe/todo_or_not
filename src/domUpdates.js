@@ -13,12 +13,6 @@ function updateCards(lists) {
 // TODO: get list the parent add-item-btn belongs to
 
 // TODO: create function to update list items after new item added to list
-// function updateCardList(list, card) {
-//   const incompleteItems = list.getIncompleteItems();
-//   const completeItems = list.getCompletedItems();
-
-//   const 
-// }
 
 function createCard(list, index) {
   const card = document.createElement("div");
@@ -38,11 +32,11 @@ function createCard(list, index) {
   addItemBtn.innerHTML = "Add item";
 
   incompleteItems.append(addItemBtn);
-  incompleteItems.append(createIncompleteItemList(list));
+  incompleteItems.append(createIncompleteItemList(list, index));
 
   const completeItems = document.createElement("div");
   completeItems.className = "list-items complete";
-  completeItems.append(document.createElement("ul"));
+  completeItems.append(createCompletedItemList(list, index));
 
   const dueDate = document.createElement("div");
   dueDate.className = "due-date";
@@ -51,30 +45,41 @@ function createCard(list, index) {
   return card;
 }
 
-function createIncompleteItemList(list) {
+function createIncompleteItemList(list, listIndex) {
   const items = list.getIncompleteItems();
-  const ulElement = document.createElement("ul");
+  const divElement = document.createElement("div");
 
-  for (const item of items){
-    const liElement = document.createElement("li");
-    liElement.innerHTML = item.title;
+  for (const [index, item] of items.entries()){
+    const checkboxElement = document.createElement("input");
+    const labelElement = document.createElement("label");
+    const breakElement = document.createElement("br");
+    checkboxElement.type = "checkbox";
+    checkboxElement.id = `list-${listIndex}-item-${index}`;
+    labelElement.htmlFor = `list-${listIndex}-item-${index}`;
+    labelElement.innerHTML = item.title;
 
-    ulElement.append(liElement);
+    divElement.append(checkboxElement, labelElement, breakElement);
   }
 
-  return ulElement;
+  return divElement;
 }
 
-function createCompletedItemList(list) {
+function createCompletedItemList(list, listIndex) {
   const items = list.getCompletedItems();
-  const ulElement = document.createElement("ul");
+  const divElement = document.createElement("div");
 
-  for (const item of items){
-    const liElement = document.createElement("li");
-    liElement.innerHTML = item.title;
+  for (const [index, item] of items.entries()){
+    const checkboxElement = document.createElement("input");
+    const labelElement = document.createElement("label");
+    const breakElement = document.createElement("br");
+    checkboxElement.type = "checkbox";
+    checkboxElement.checked = true;
+    checkboxElement.id = `list-${listIndex}-item-${index}`;
+    labelElement.htmlFor = `list-${listIndex}-item-${index}`;
+    labelElement.innerHTML = item.title;
 
-    ulElement.append(liElement);
+    divElement.append(checkboxElement, labelElement, breakElement);
   }
 
-  return ulElement;
+  return divElement;
 }

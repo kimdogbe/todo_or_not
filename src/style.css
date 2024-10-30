@@ -179,7 +179,7 @@ form {
 .list-items > div > div {
   padding: 3px;
   border-radius: 5px;
-  background-color: rgba(153, 153, 189, 0.4);
+  background-color: rgba(66, 66, 83, 0.1);
 }
 
 label {

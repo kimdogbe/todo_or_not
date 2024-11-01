@@ -7,7 +7,7 @@
 
 body {
   display: grid;
-  grid-template-columns: 1fr 6fr;
+  grid-template-columns: minmax(180px, 1fr) 6fr;
   grid-template-rows: 4rem 1fr;
   height: 100vh;
   background-image: url(../images/paper.jpg);
@@ -129,14 +129,6 @@ a {
   font-size: 1.5rem;
 }
 
-li {
-  list-style: none;
-}
-
-.complete li {
-  text-decoration: line-through;
-}
-
 .complete,
 .incomplete {
   margin: 10px 0px;
@@ -151,8 +143,8 @@ input[type="checkbox"]:checked + label {
 }
 
 .add-item-btn {
-  background-color: green;
-  padding: 5px 10px;
+  background-color: rgba(11, 180, 11, 0.3);
+  padding: 8px 10px;
   border: none;
 }
 
@@ -178,7 +170,12 @@ form {
   align-items: center;
   padding: 3px 10px;
   border-radius: 5px;
-  background-color: rgba(66, 66, 83, 0.1);
+  background-color: rgba(3, 64, 194, 0.1);
+  border-bottom: 3px solid rgb(22, 21, 20);
+}
+
+.list-items.complete > div > div {
+  background-color: rgba(235, 104, 11, 0.1);
 }
 
 label {

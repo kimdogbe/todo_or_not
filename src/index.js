@@ -25,7 +25,6 @@ addEventListener("click", (event) => {
   else if (event.target.type == "checkbox") {
     const listIndex = event.target.id.split("-")[1];
     const itemIndex = event.target.id.split("-")[3];
-    console.log(`listnum = ${listIndex}, itemNum = ${itemIndex}`);
     const targetList = allLists[listIndex];
 
     if (event.target.checked){
@@ -62,6 +61,16 @@ addEventListener("click", (event) => {
     }, { once: true });
 
     console.log(listIndex);
+  }
+  else if (event.target.classList[0] === "delete-item-btn") {
+    const btnClicked = event.target.parentNode;
+    const itemIndex = btnClicked.id.split("-")[3];
+    const listIndex = btnClicked.id.split("-")[1];
+    const listComplete = btnClicked.parentNode.parentNode.classList[1] === "complete" ? true : false;
+    console.log(btnClicked);
+    allLists[listIndex].removeItem(itemIndex, listComplete);
+    updateCards(allLists);
+    storeListsLocally();
   }
 });
 

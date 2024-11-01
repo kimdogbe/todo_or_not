@@ -1,4 +1,5 @@
 export { updateCards };
+import bin from "../images/bin.svg";
 
 function updateCards(lists) {
   const content = document.querySelector("#content");
@@ -53,13 +54,19 @@ function createIncompleteItemList(list, listIndex) {
     const itemDiv = document.createElement("div");
     const checkboxElement = document.createElement("input");
     const labelElement = document.createElement("label");
-    const breakElement = document.createElement("br");
+    const deleteBtnElement = document.createElement("button");
+    const binImage = document.createElement("img");
+    binImage.src = bin;
+    binImage.width = 15;
+    deleteBtnElement.append(binImage);
+    deleteBtnElement.classList.add("delete-item-btn");
     checkboxElement.type = "checkbox";
     checkboxElement.id = `list-${listIndex}-item-${index}`;
     labelElement.htmlFor = `list-${listIndex}-item-${index}`;
     labelElement.innerHTML = item.title;
 
-    itemDiv.append(checkboxElement, labelElement, breakElement);
+    itemDiv.id = `list-${listIndex}-item-${index}`;
+    itemDiv.append(checkboxElement, labelElement, deleteBtnElement);
     divElement.append(itemDiv);
   }
 
@@ -74,14 +81,20 @@ function createCompletedItemList(list, listIndex) {
     const itemDiv = document.createElement("div");
     const checkboxElement = document.createElement("input");
     const labelElement = document.createElement("label");
-    const breakElement = document.createElement("br");
+    const deleteBtnElement = document.createElement("button");
+    const binImage = document.createElement("img");
+    binImage.src = bin;
+    binImage.width = 15;
+    deleteBtnElement.append(binImage);
+    deleteBtnElement.classList.add("delete-item-btn");
     checkboxElement.type = "checkbox";
     checkboxElement.checked = true;
     checkboxElement.id = `list-${listIndex}-item-${index}`;
     labelElement.htmlFor = `list-${listIndex}-item-${index}`;
     labelElement.innerHTML = item.title;
 
-    itemDiv.append(checkboxElement, labelElement, breakElement);
+    itemDiv.id = `list-${listIndex}-item-${index}`;
+    itemDiv.append(checkboxElement, labelElement, deleteBtnElement);
     divElement.append(itemDiv);
   }
 

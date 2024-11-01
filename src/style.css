@@ -137,10 +137,7 @@ li {
   text-decoration: line-through;
 }
 
-.complete {
-  margin: 10px 0px;
-}
-
+.complete,
 .incomplete {
   margin: 10px 0px;
 }
@@ -177,11 +174,19 @@ form {
 }
 
 .list-items > div > div {
-  padding: 3px;
+  display: flex;
+  align-items: center;
+  padding: 3px 10px;
   border-radius: 5px;
   background-color: rgba(66, 66, 83, 0.1);
 }
 
 label {
   margin: 3px;
+}
+
+.delete-item-btn {
+  border: none;
+  margin-left: auto;
+  opacity: 0.5;
 }

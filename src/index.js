@@ -92,5 +92,32 @@ function storeListsLocally(){
   }
   
   localStorage.setItem("listData", JSON.stringify(listObjects));
-
 }
+
+function retrieveLocalData (){
+  if (localStorage.getItem("listData")) {
+    const localData = JSON.parse(localStorage.getItem("listData"));
+    console.log(localData);
+    
+    for (let item of localData) {
+      const list = createList(item.name, item.description);
+
+      for (let completed of item.completedItems) {
+        list.createCompletedItem(completed.title, completed.description, completed.dueDate, completed.priority);
+      }
+      for (let incomplete of item.incompleteItems) {
+        list.createNewItem(incomplete.title, incomplete.description, incomplete.dueDate, incomplete.priority);
+      }
+
+      // list.setCompletedItems(item.completedItems);
+      // list.setIncompleteItems(item.incompleteItems);
+      allLists.push(list);
+    }
+
+    updateCards(allLists);
+    
+    console.log(allLists[0].getIncompleteItems());
+  }
+}
+
+retrieveLocalData();

@@ -21,6 +21,11 @@ function createList (name, description) {
     addItem(newItem);
   }
 
+  const createCompletedItem = function (title, description, dueDate, priority) {
+    let newItem = createListItem(title, description, dueDate, priority);
+    completedItems.push(newItem);
+  }
+
   const addItem = function (item) {
     incompleteItems.push(item);
   }
@@ -49,5 +54,8 @@ function createList (name, description) {
   const getIncompleteItems = () => incompleteItems;
   const getCompletedItems = () => completedItems;
 
-  return { name, description, createNewItem, removeItem, markComplete, markIncomplete, getCompletedItems, getIncompleteItems }
+  const setIncompleteItems = (items) => incompleteItems.push(items);
+  const setCompletedItems = (items) => completedItems.push(items);
+
+  return { name, description, createNewItem, createCompletedItem, removeItem, markComplete, markIncomplete, getCompletedItems, getIncompleteItems, setIncompleteItems, setCompletedItems }
 }

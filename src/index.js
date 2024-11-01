@@ -23,61 +23,20 @@ addEventListener("click", (event) => {
     addItemDialog.close();
   }
   else if (event.target.type == "checkbox") {
-    const listIndex = event.target.id.split("-")[1];
-    const itemIndex = event.target.id.split("-")[3];
-    const targetList = allLists[listIndex];
-
-    if (event.target.checked){
-      targetList.markComplete(itemIndex);
-    }
-    else {
-      targetList.markIncomplete(itemIndex);
-    }
-    
-    console.log(targetList.getIncompleteItems());
-    console.log(targetList.getCompletedItems());
-    updateCards(allLists);
-    storeListsLocally();
+    handleCheckboxToggling(event);
   }
   else if (event.target.classList[0] == "add-item-btn") {
-    // TODO: add item to list
-    addItemDialog.showModal();
-    const listIndex = event.target.classList[1].split("-")[1];
-    const targetList = allLists[listIndex];
-
-    addItemForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const itemTitle = document.querySelector("#item-title");
-      const itemDesc = document.querySelector("#item-desc");
-      const itemPriority = document.querySelector("#item-priority");
-      const itemDueDate = document.querySelector("#item-duedate");
-      targetList.createNewItem(itemTitle.value, itemDesc.value, itemDueDate.value, itemPriority.value);
-      console.log(allLists);
-      updateCards(allLists);
-      storeListsLocally();
-      console.log(targetList.getIncompleteItems());
-      addItemForm.reset();
-      addItemDialog.close();
-    }, { once: true });
-
-    console.log(listIndex);
+    console.log("press");
+    handleAddItem(event);
   }
   else if (event.target.classList[0] === "delete-item-btn") {
-    const btnClicked = event.target.parentNode;
-    const itemIndex = btnClicked.id.split("-")[3];
-    const listIndex = btnClicked.id.split("-")[1];
-    const listComplete = btnClicked.parentNode.parentNode.classList[1] === "complete" ? true : false;
-    console.log(btnClicked);
-    allLists[listIndex].removeItem(itemIndex, listComplete);
-    updateCards(allLists);
-    storeListsLocally();
+    handleDeleteItem(event);
   }
 });
 
 newListForm.addEventListener("submit", (event) => {
     event.preventDefault();
     allLists.push(createList(listName.value, listDesc.value));
-    console.log(allLists);
     updateCards(allLists);
     storeListsLocally();
     newListForm.reset();
@@ -96,14 +55,60 @@ function storeListsLocally(){
     }
 
     listObjects.push(listObj);
-
-
   }
   
   localStorage.setItem("listData", JSON.stringify(listObjects));
 }
 
-function retrieveLocalData (){
+function handleAddItem(event) {
+  addItemDialog.showModal();
+  const listIndex = event.target.classList[1].split("-")[1];
+  const targetList = allLists[listIndex];
+
+  addItemForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const itemTitle = document.querySelector("#item-title");
+    const itemDesc = document.querySelector("#item-desc");
+    const itemPriority = document.querySelector("#item-priority");
+    const itemDueDate = document.querySelector("#item-duedate");
+    targetList.createNewItem(itemTitle.value, itemDesc.value, itemDueDate.value, itemPriority.value);
+
+    updateCards(allLists);
+    storeListsLocally();
+
+    addItemForm.reset();
+    addItemDialog.close();
+  }, { once: true });
+}
+
+function handleDeleteItem(event){
+  const btnClicked = event.target.parentNode;
+  const itemIndex = btnClicked.id.split("-")[3];
+  const listIndex = btnClicked.id.split("-")[1];
+  const listComplete = btnClicked.parentNode.parentNode.classList[1] === "complete" ? true : false;
+
+  allLists[listIndex].removeItem(itemIndex, listComplete);
+  updateCards(allLists);
+  storeListsLocally();
+}
+
+function handleCheckboxToggling (event){
+  const listIndex = event.target.id.split("-")[1];
+  const itemIndex = event.target.id.split("-")[3];
+  const targetList = allLists[listIndex];
+
+  if (event.target.checked){
+    targetList.markComplete(itemIndex);
+  }
+  else {
+    targetList.markIncomplete(itemIndex);
+  }
+  
+  updateCards(allLists);
+  storeListsLocally();
+}
+
+function retrieveLocalData(){
   if (localStorage.getItem("listData")) {
     const localData = JSON.parse(localStorage.getItem("listData"));
     console.log(localData);
@@ -118,14 +123,10 @@ function retrieveLocalData (){
         list.createNewItem(incomplete.title, incomplete.description, incomplete.dueDate, incomplete.priority);
       }
 
-      // list.setCompletedItems(item.completedItems);
-      // list.setIncompleteItems(item.incompleteItems);
       allLists.push(list);
     }
 
     updateCards(allLists);
-    
-    console.log(allLists[0].getIncompleteItems());
   }
 }
 

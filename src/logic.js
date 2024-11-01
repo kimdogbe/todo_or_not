@@ -54,8 +54,5 @@ function createList (name, description) {
   const getIncompleteItems = () => incompleteItems;
   const getCompletedItems = () => completedItems;
 
-  const setIncompleteItems = (items) => incompleteItems.push(items);
-  const setCompletedItems = (items) => completedItems.push(items);
-
-  return { name, description, createNewItem, createCompletedItem, removeItem, markComplete, markIncomplete, getCompletedItems, getIncompleteItems, setIncompleteItems, setCompletedItems }
+  return { name, description, createNewItem, createCompletedItem, removeItem, markComplete, markIncomplete, getCompletedItems, getIncompleteItems }
 }

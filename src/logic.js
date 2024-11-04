@@ -7,7 +7,7 @@ function createListItem (title, description='', dueDate, priority='medium') {
     completed = true;
   }
 
-  const getIsCompleted = () => this.completed;
+  const getIsCompleted = () => completed;
 
   return { title, description, dueDate, priority, setCompleted, getIsCompleted }
 }
